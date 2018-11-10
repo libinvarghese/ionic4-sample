@@ -1,0 +1,7 @@
+{
+  "name": "truckstop",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

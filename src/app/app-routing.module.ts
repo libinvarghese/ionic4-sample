@@ -14,11 +14,13 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  { path: 'form', loadChildren: './pages/form/form.module#FormPageModule' },
+  { path: 'details', loadChildren: './pages/details/details.module#DetailsPageModule' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {enableTracing: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

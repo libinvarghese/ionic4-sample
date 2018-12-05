@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Form
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  Query Params: {{ params | json }}
+<ion-button (click)="openPage()">Open Details with "form: xyz"</ion-button>
+</ion-content>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-list',
@@ -19,19 +21,39 @@ export class ListPage implements OnInit {
     'bluetooth',
     'build'
   ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
+  private urls = [
+    '/form'
+  ];
+  public params;
+  public items: Array<{ title: string; note: string; icon: string, url: string }> = [];
+  constructor(private _route: ActivatedRoute, private _navCtrl: NavController) {
+    this._route.queryParams.subscribe(qParams => {
+      this.params = { ...qParams } as any;
+      console.log(`Recieved ${JSON.stringify(qParams)} in ListPage`);
+    });
+  }
+
+  ngOnInit() {
     for (let i = 1; i < 11; i++) {
       this.items.push({
         title: 'Item ' + i,
         note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+        icon: this.icons[i],
+        url: this.urls[i] ? this.urls[i] : null
       });
     }
   }
 
-  ngOnInit() {
+  openPage(item) {
+    if (item.url) {
+      this._navCtrl.navigateForward(item.url, true, {
+        queryParams: {
+          test: '123'
+        }
+      });
+    }
   }
+
   // add back when alpha.4 is out
   // navigate(item) {
   //   this.router.navigate(['/list', JSON.stringify(item)]);

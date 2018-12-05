@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  Query Params: {{ params | json }}
+  <ion-button (click)="doSearch()">Go Back with "param1: abc"</ion-button> 
+</ion-content>

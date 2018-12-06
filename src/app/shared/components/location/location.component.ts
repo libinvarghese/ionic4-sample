@@ -23,6 +23,6 @@ export class LocationComponent implements OnInit {
   }
 
   citySelected(item) {
-    console.log(`Select city = ${item}`)
+    console.log(`Select city = ${item}`);
   }
 }

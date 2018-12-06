@@ -21,4 +21,8 @@ export class LocationComponent implements OnInit {
   dismissModal() {
     this._modalCtrl.dismiss();
   }
+
+  citySelected(item) {
+    console.log(`Select city = ${item}`)
+  }
 }

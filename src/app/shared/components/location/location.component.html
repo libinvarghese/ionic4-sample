@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModal()">Back</ion-button>
+    </ion-buttons>
+    <ion-title>
+      Select Location
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-slides #locationSlides (ionSlideDidChange)="onSlideChanged($event)">
+  <ion-slide>
+
+  <ion-card>
+    <ion-list>
+      <ion-radio-group mode="ios">
+        <ion-item *ngFor="let item of cityResults" mode="ios">
+          <!--
+            <ts-icon *ngIf="item === 'Home'" item-start class="f34" name="home" ion-text color="primary" aria-hidden="true"></ts-icon>
+          -->
+          <div color="primary" slot="start">
+            <i *ngIf="item === 'Home'" class="f28 ts-home" aria-hidden="true"></i>
+            <i *ngIf="item === 'Current Location'" class="f28 ts-map-locate"></i>
+            <i
+              *ngIf="item === 'Preferred Origin' && locationType === 'origin'"
+              class="f28 ts-map-marker c-ts-green"
+            ></i>
+            <i
+              *ngIf="item === 'Preferred Destination' && locationType === 'destination'"
+              class="f28 ts-map-marker c-ts-red"
+            ></i>
+          </div>
+          <!--
+            <ts-icon *ngIf="item === 'Current Location'" class="c-primary f28" name="map-locate" item-start></ts-icon>
+          -->
+          <!--
+            <ts-icon *ngIf="item === 'Preferred Origin' && locationType === 'origin'" item-start class="f34" name="map-marker" ion-text
+               color="ts-green" aria-hidden="true"></ts-icon>
+          -->
+          <!--
+            <ts-icon *ngIf="item === 'Preferred Destination' &&  locationType === 'destination'" item-start class="f34" name="map-marker"
+               ion-text color="ts-red" aria-hidden="true"></ts-icon>
+          -->
+          <ion-label [ngSwitch]="item">
+            <div *ngSwitchCase="'Home'">
+              {{item}}
+              <p>{{(preference.Home.length > 0) ? preference.Home : ''}}</p>
+            </div>
+            <div *ngSwitchCase="'Current Location'">
+              {{item}}
+              <p></p>
+            </div>
+            <div *ngSwitchCase="'Preferred Origin'">
+              {{item}}
+              <p>{{(preference.Origin.length > 0) ? preference.Origin : '' }}</p>
+            </div>
+            <div *ngSwitchCase="'Preferred Destination'">
+              {{item}}
+              <p>{{(preference.Destination.length > 0) ? preference.Destination : '' }}</p>
+            </div>
+            <div *ngSwitchDefault>{{item}}</div>
+          </ion-label>
+          <ion-radio
+            slot="end"
+            [value]="item"
+            (click)="citySelected(item)"
+            [checked]="item.isChecked"
+            mode="ios"
+          ></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </ion-card>
+  </ion-slide>
+    </ion-slides>
+  </ion-content>
